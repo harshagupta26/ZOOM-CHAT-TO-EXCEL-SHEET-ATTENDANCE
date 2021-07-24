@@ -1,6 +1,6 @@
 
 #autor @harshagupta
-#stared 28.09.20
+#dated 28.09.20
 
 import pandas as pd
 import itertools
@@ -40,13 +40,13 @@ def inputfunc():
   tokens=[]
   for i in name:
       try:
-        a=i.split()[2]
-        if not a.isalnum():
-          tokens.append(a)
+        a=i.split()[2]        #index 2 stored therefore imp to have no space 
+        if not a.isalnum():   #not both no.and string
+          tokens.append(a)    
       except IndexError:
         continue
-  data=[i.split('_') for i in tokens ]
-  data = list(itertools.chain.from_iterable(data))    
+  data=[i.split('_') for i in tokens ]   # single element had both no. and name
+  data = list(itertools.chain.from_iterable(data))   #element broken in a list 
   roll_no=[x for x in data if x.isdigit()]
   names=[x for x in data if x.isalpha()]
   
@@ -58,7 +58,7 @@ def inputfunc():
 
     
   Attendance= Attendance.drop_duplicates(subset=['ROLL NUMBER','Student Name'],keep='first')
-  Attendance.to_excel(path2)                                           #Excel sheet saved
+  Attendance.to_excel(path2)                    #Excel sheet saved
   mb.showinfo("Successful","Attendance Sheet Formed!")
   
 
